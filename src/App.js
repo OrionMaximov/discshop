@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import Menu from "./conponents/Menu/Menu";
+import Produit from "./conponents/Produit/Produit";
+import Panier from "./conponents/Panier/Panier";
+import React, { useState } from 'react';
+import "./conponents/Panier/Panier.css";
 import './App.css';
 
 function App() {
+  const [show, setShow] = useState(false);
+  let hide = !show
+  function handleClick() {
+    setShow(hide);
+  }
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <Menu action={() => { handleClick() }} />
       </header>
+      <main>
+        <Produit />
+        {show ? <Panier /> : ""}
+      </main>
     </div>
   );
 }
